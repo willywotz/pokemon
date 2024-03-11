@@ -44,8 +44,8 @@ DROP TABLE IF EXISTS `pokedex`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `pokedex` (
-  `type_id` tinyint(4) DEFAULT NULL,
-  `pokemon_id` tinyint(4) DEFAULT NULL
+  `type_id` tinyint(4) NOT NUll,
+  `pokemon_id` tinyint(4) NOT NUll
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -67,7 +67,7 @@ DROP TABLE IF EXISTS `pokemon`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `pokemon` (
-  `id` tinyint(4) DEFAULT NULL,
+  `id` tinyint(4) NOT NUll AUTO_INCREMENT primary key,
   `pname` varchar(10) DEFAULT NULL,
   `height` varchar(7) DEFAULT NULL,
   `weight` varchar(10) DEFAULT NULL,
@@ -94,7 +94,7 @@ DROP TABLE IF EXISTS `type`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `type` (
-  `id` tinyint(4) DEFAULT NULL,
+  `id` tinyint(4) NOT NUll AUTO_INCREMENT primary key,
   `tname` varchar(8) DEFAULT NULL,
   `color1` varchar(6) DEFAULT NULL,
   `color2` varchar(6) DEFAULT NULL,
@@ -120,7 +120,7 @@ DROP TABLE IF EXISTS `user`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `user` (
-  `id` tinyint(4) DEFAULT NULL,
+  `id` tinyint(4) NOT NUll AUTO_INCREMENT primary key,
   `username` varchar(9) DEFAULT NULL,
   `email` varchar(19) DEFAULT NULL,
   `password` varchar(60) DEFAULT NULL,

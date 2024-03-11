@@ -5,7 +5,7 @@ from flask_login import LoginManager
 from flask_bcrypt import Bcrypt
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///pokemondb.sqlite'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://root@localhost/pokemon'
 app.config['SECRET_KEY'] = b'uhjilkjhftyiko9opoi'
 db = SQLAlchemy(app)
 migrate = Migrate(app, db)
