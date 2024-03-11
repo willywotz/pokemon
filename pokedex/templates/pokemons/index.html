@@ -1,0 +1,64 @@
+{% extends 'layout.html' %}
+
+{% block title %}
+  {{title}}
+{% endblock %}
+
+{% block content %}
+  <style>.btn-type { opacity: 0.8; transition: 100ms ease-in-out; padding: 0.25rem 0.5rem; display: block; border-radius: 0.5rem; text-decoration: none; cursor: pointer; } .btn-type:hover { opacity: 1; }</style>
+  <div class="container">
+    <h1 class="pt-4">{{title}}</h1>
+    <hr>
+    <div class="row">
+      <div class="col">
+        <div style="display: flex; flex-wrap: wrap; gap: 0.5rem;">
+          <a class="btn-type" href="{{ url_for('pokemons') }}" style="background-color: #eee; color: #000;">All</a>
+          {% for t in types %}
+          <a class="btn-type" href="{{ url_for('pokemons', type=t.tname) }}" style="background-image: linear-gradient(#{{ t.color1 }}, #{{ t.color2 }}); color: #{{ t.colort }};">{{ t.tname }}</a>
+          {% endfor %}
+        </div>
+      </div>
+      <div class="col">
+        <a href="{{url_for('new_pokemon')}}" class="btn btn-outline-success float-end">
+          <i class="bi bi-database-add"></i>
+          Add New Pokemon
+        </a>
+      </div>
+    </div>
+    <table class="table mt-4">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Pokemon Name</th>
+          <th scope="col">Pokemon Type</th>
+          <th scope="col">Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for p in pokemons %}
+        <tr>
+          <th scope="row">{{loop.index}}</th>
+          <td>{{p.pname}}</td>
+          <td>
+            <div style="display: flex; flex-wrap: wrap; gap: 0.5rem;">
+              {% for t in p.get_types() %}
+              <a class="btn-type" href="{{ url_for('pokemons', type=t.tname) }}" style="background-image: linear-gradient(#{{ t.color1 }}, #{{ t.color2 }}); color: #{{ t.colort }};">{{ t.tname }}</a>
+              {% endfor %}
+            </div>
+          </td>
+          <td>
+            <a href="{{url_for('pokemon_detail', id=p.id)}}" class="btn btn-outline-success btn-sm" title="More Information">
+              <i class="bi bi-info-circle-fill"></i>
+            </a>
+            
+          </td>
+          
+        </tr>
+        {% endfor %}
+        
+        
+      </tbody>
+    </table>
+  </div>
+{% endblock %}
+

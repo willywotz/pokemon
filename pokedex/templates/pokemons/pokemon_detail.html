@@ -1,0 +1,44 @@
+{% extends 'layout.html' %}
+
+{% block title %}
+  {{title}}
+{% endblock %}
+
+{% block content %}
+  <div class="container">
+    <h1 class="pt-4">{{title}}</h1>
+    <hr>
+    <div class="card">
+      <div class="card-header text-white bg-success">
+        <h3>{{pokemon.pname}}</h3>
+      </div>
+      <div class="card-body">
+        <div class="row">
+          <div class="col">
+            <img src="{{pokemon.picture}}" alt="" class="img-thumbnail">
+          </div>
+          <div class="col">
+            <h2 class="text-success">Description:</h2>
+            <h4>{{pokemon.description}}</h4>
+            <h2 class="text-success">Height:</h2>
+            <h4>{{pokemon.height}}</h4>
+            <h2 class="text-success">Weight:</h2>
+            <h3>{{pokemon.weight}}</h3>
+            <h2 class="text-success">Pokemon Types:</h2>
+            <style>.btn-type { opacity: 0.8; transition: 100ms ease-in-out; padding: 0.75rem 1.5rem; display: block; border-radius: 0.5rem; text-decoration: none; cursor: pointer; } .btn-type:hover { opacity: 1; }</style>
+            <div style="display: flex; flex-wrap: wrap; gap: 0.5rem;">
+              {% for type in pokemon.get_types() %}
+                <a href="{{ url_for('pokemons', type=type.tname) }}" class="btn-type" style="background-image: linear-gradient(#{{ type.color1 }}, #{{ type.color2 }}); color: #{{ type.colort }};">
+                  {{type.tname}}
+                </a>
+              {% endfor %}
+            </div>
+            
+          </div>
+        </div>
+      </div>
+    </div>
+    
+  </div>
+{% endblock %}
+
